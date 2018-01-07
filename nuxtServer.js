@@ -37,5 +37,5 @@ app.use(ctx => {
   });
 });
 
-app.listen(port, host);
+app.listen(port);
 console.log('Server listening on ' + host + ':' + port);

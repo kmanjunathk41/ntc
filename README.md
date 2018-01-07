@@ -1,1 +1,1 @@
-# ntc
+# ui_nuxt_boilerplate

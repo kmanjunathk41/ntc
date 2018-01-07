@@ -1,0 +1,22 @@
+[Unit]
+SourcePath=/etc/init.d/clientserver
+Description=LSB: start and stop clientserver
+Before=runlevel2.target runlevel3.target runlevel4.target runlevel5.target shutdown.target
+After=network-online.target remote-fs.target local-fs.target mongod.service
+Wants=network-online.target mongod.service
+Conflicts=shutdown.target
+
+[Service]
+Type=forking
+Restart=no
+TimeoutSec=5min
+IgnoreSIGPIPE=no
+KillMode=process
+GuessMainPID=no
+RemainAfterExit=yes
+SysVStartPriority=1
+ExecStart=/etc/init.d/clientserver start
+ExecStop=/etc/init.d/clientserver stop
+
+[Install]
+WantedBy=multi-user.target

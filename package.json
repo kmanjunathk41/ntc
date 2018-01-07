@@ -1,0 +1,52 @@
+{
+  "name": "klario",
+  "version": "1.0.0",
+  "description": "Klario dashboard",
+  "scripts": {
+    "dev": "backpack dev",
+    "build": "nuxt build && backpack build",
+    "start": "cross-env NODE_ENV=production node build/main.js",
+    "generate": "nuxt generate",
+    "lint": "semistandard --verbose | snazzy",
+    "format": "npm run __format -- --write '**/*.js'",
+    "__format": "prettier-eslint --no-bracket-spacing --eslint-path=node_modules/semistandard-prettier-eslint"
+  },
+  "dependencies": {
+    "axios": "*",
+    "koa": "*",
+    "mongoose":"*",
+    "lodash": "*",
+    "moment": "*",
+    "moment-timezone": "*",
+    "nuxt": "^1.0.0-rc11",
+    "prettier-eslint-cli": "^4.4.0",
+    "vuetify": "^0.16.9"
+  },
+  "devDependencies": {
+    "babel-eslint": "^7.2.3",
+    "babel-plugin-transform-imports": "^1.4.1",
+    "backpack-core": "^0.3.0",
+    "cross-env": "^5.0.1",
+    "css-loader": "*",
+    "eslint": "^4.3.0",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-loader": "^1.9.0",
+    "eslint-plugin-html": "^3.1.1",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-node": "^5.1.1",
+    "eslint-plugin-prettier": "^2.3.1",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "file-loader": "*",
+    "less": "*",
+    "less-loader": "*",
+    "prettier-eslint": "^8.2.1",
+    "prettier-eslint-cli": "*",
+    "semistandard-prettier-eslint": "*",
+    "prettier": "^1.7.4",
+    "snazzy": "^7.0.0",
+    "stylus": "^0.54.5",
+    "stylus-loader": "^3.0.1",
+    "vuetify-loader": "^0.1.0"
+  }
+}

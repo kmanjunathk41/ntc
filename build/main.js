@@ -73,11 +73,16 @@ module.exports =
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__initMongoose__ = __webpack_require__(4);
-/* harmony export (immutable) */ exports["a"] = connectMongoose;
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.connectMongoose = connectMongoose;
+
+var _initMongoose = __webpack_require__(4);
+
 var mongoose = __webpack_require__(5);
-
-
 function connectMongoose() {
     var options = {
         useMongoClient: true,
@@ -89,7 +94,7 @@ function connectMongoose() {
         // bufferMaxEntries: 0
     };
     mongoose.connect('mongodb://AdminManju:Mongo!123!@localhost:27017/admin', options).then(function () {
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__initMongoose__["a" /* initMongoose */])(mongoose);
+        (0, _initMongoose.initMongoose)(mongoose);
         console.log("mongo connected");
     }, function (err) {
         console.log("mongo connection failed");
@@ -100,7 +105,10 @@ function connectMongoose() {
 /* 1 */
 /***/ function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(__dirname) {var nodeExternals = __webpack_require__(7);
+"use strict";
+/* WEBPACK VAR INJECTION */(function(__dirname) {
+
+var nodeExternals = __webpack_require__(7);
 var resolve = function resolve(dir) {
   return __webpack_require__(6).join(__dirname, dir);
 };
@@ -110,28 +118,16 @@ module.exports = {
     ** Headers of the page
     */
   head: {
-    title: 'klario',
+    title: 'NTC',
     meta: [{ charset: 'utf-8' }, { name: 'viewport', content: 'width=device-width, initial-scale=1' }, { hid: 'description', name: 'description', content: 'dashboard' }],
-    link: [{ rel: 'icon', type: 'image/png', href: '/favicon.png' }, {
-      rel: 'stylesheet',
-      href: 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons'
-    }]
+    link: [{ rel: 'icon', type: 'image/png', href: '/favicon.png' }]
   },
-  plugins: ['~/plugins/vuetify.js', '~/plugins/appRouter', { src: '~/plugins/notification_plugin', ssr: true }, { src: '~/plugins/responseManager', ssr: false }],
+  plugins: ['~/plugins/vuetify.js', '~/plugins/appRouter', '~/plugins/notification_plugin', { src: '~/plugins/responseManager', ssr: false }],
   css: ['~/assets/style/app.styl'],
   /*
     ** Customize the progress bar color
     */
   loading: { color: '#7a1ac9' },
-  mode: "spa",
-  router: {
-    mode: "hash"
-  },
-
-  generate: {
-    routes: ['/login']
-
-  },
   /*
     ** Build configuration
     */
@@ -164,6 +160,11 @@ module.exports = {
           use: ['css-loader', 'less-loader']
         });
       }
+      if (ctx.isServer) {
+        config.externals = [nodeExternals({
+          whitelist: [/^vuetify/]
+        })];
+      }
     }
   }
 };
@@ -186,8 +187,13 @@ module.exports = require("nuxt");
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony export (immutable) */ exports["a"] = initMongoose;
-/* unused harmony export getMongoose */
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.initMongoose = initMongoose;
+exports.getMongoose = getMongoose;
 var this_mongoose = void 0;
 
 function initMongoose(mongoose) {
@@ -221,16 +227,19 @@ module.exports = require("webpack-node-externals");
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_koa__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_koa___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_koa__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_nuxt__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_nuxt___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_nuxt__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__nodeserver_mongoose__ = __webpack_require__(0);
 
 
+var _koa = __webpack_require__(2);
 
-var app = new __WEBPACK_IMPORTED_MODULE_0_koa___default.a();
+var _koa2 = _interopRequireDefault(_koa);
+
+var _nuxt = __webpack_require__(3);
+
+var _mongoose = __webpack_require__(0);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var app = new _koa2.default();
 var host = process.env.HOST || '127.0.0.1';
 var port = process.env.PORT || 7616;
 // process.env.DEBUG = 'nuxt:*'
@@ -240,13 +249,13 @@ var config = __webpack_require__(1);
 config.dev = !(app.env === 'production');
 
 // Instantiate nuxt.js
-var nuxt = new __WEBPACK_IMPORTED_MODULE_1_nuxt__["Nuxt"](config);
+var nuxt = new _nuxt.Nuxt(config);
 
 //connect mongoose
-__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__nodeserver_mongoose__["a" /* connectMongoose */])();
+(0, _mongoose.connectMongoose)();
 
 if (config.dev) {
-  var builder = new __WEBPACK_IMPORTED_MODULE_1_nuxt__["Builder"](nuxt);
+  var builder = new _nuxt.Builder(nuxt);
   builder.build().catch(function (e) {
     console.error(e); // eslint-disable-line no-console
     process.exit(1);

@@ -22,7 +22,6 @@
     },
 
     created: function () {
-      // this.checkUser();
     },
 
     mounted: function () {

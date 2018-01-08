@@ -33,7 +33,7 @@ const scrollBehavior = (to, from, savedPosition) => {
 
 export function createRouter () {
   return new Router({
-    mode: 'hash',
+    mode: 'history',
     base: '/',
     linkActiveClass: 'nuxt-link-active',
     linkExactActiveClass: 'nuxt-link-exact-active',
@@ -45,6 +45,8 @@ export function createRouter () {
 			name: "index"
 		}
     ],
+    
+    
     fallback: false
   })
 }

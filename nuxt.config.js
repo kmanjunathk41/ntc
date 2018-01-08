@@ -49,6 +49,16 @@ module.exports = {
     */
 
   build: {
+    babel: {
+      plugins: [
+        ["transform-imports", {
+          "vuetify": {
+            "transform": "vuetify/es5/components/${member}",
+            "preventFullImport": true
+          }
+        }]
+      ]
+    },
     vendor: [
       '~/plugins/vuetify.js',
       'axios',

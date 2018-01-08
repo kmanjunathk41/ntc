@@ -137,6 +137,14 @@ module.exports = {
     */
 
   build: {
+    babel: {
+      plugins: [["transform-imports", {
+        "vuetify": {
+          "transform": "vuetify/es5/components/${member}",
+          "preventFullImport": true
+        }
+      }]]
+    },
     vendor: ['~/plugins/vuetify.js', 'axios', '~/plugins/responseManager', '~/plugins/appRouter', '~/plugins/notification_plugin'],
     extractCSS: true,
     ssr: true,
@@ -257,7 +265,7 @@ app.use(function (ctx) {
   });
 });
 
-app.listen(port, host);
+app.listen(port);
 console.log('Server listening on ' + host + ':' + port);
 
 /***/ }

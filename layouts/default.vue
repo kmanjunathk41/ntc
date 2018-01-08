@@ -21,7 +21,7 @@
         name:"layout",
         data () {
             return {
-              title : "HEADER"
+              title : "Nature through camera"
             }
         },
         mounted(){

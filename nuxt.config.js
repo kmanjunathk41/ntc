@@ -6,7 +6,7 @@ module.exports = {
     ** Headers of the page
     */
   head: {
-    title: 'klario',
+    title: 'NTC',
     meta: [
       {charset: 'utf-8'},
       {name: 'viewport', content: 'width=device-width, initial-scale=1'},
@@ -14,17 +14,17 @@ module.exports = {
     ],
     link: [
       {rel: 'icon', type: 'image/png', href: '/favicon.png'},
-      {
+      /*{
         rel: 'stylesheet',
         href:
           'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons'
-      }
+      }*/
     ]
   },
   plugins: [
     '~/plugins/vuetify.js',
     '~/plugins/appRouter',
-      {src:'~/plugins/notification_plugin', ssr:true},
+    '~/plugins/notification_plugin',
     {src: '~/plugins/responseManager', ssr: false}
   ],
   css: ['~/assets/style/app.styl'],
@@ -32,18 +32,6 @@ module.exports = {
     ** Customize the progress bar color
     */
   loading: {color: '#7a1ac9'},
-  mode : "spa",
-  router : {
-    mode : "hash"
-  },
-
-
-  generate : {
-    routes: [
-      '/login'
-    ]
-
-  },
   /*
     ** Build configuration
     */
@@ -84,6 +72,13 @@ module.exports = {
             use: ['css-loader', 'less-loader']
           }
         );
+      }
+      if (ctx.isServer) {
+        config.externals = [
+          nodeExternals({
+            whitelist: [/^vuetify/]
+          })
+        ]
       }
     }
   }

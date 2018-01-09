@@ -3,8 +3,8 @@ const resolve = dir => require('path').join(__dirname, dir);
 
 module.exports = {
   /*
-    ** Headers of the page
-    */
+   ** Headers of the page
+   */
   head: {
     title: 'NTC',
     meta: [
@@ -15,10 +15,10 @@ module.exports = {
     link: [
       {rel: 'icon', type: 'image/png', href: '/favicon.png'},
       /*{
-        rel: 'stylesheet',
-        href:
-          'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons'
-      }*/
+       rel: 'stylesheet',
+       href:
+       'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons'
+       }*/
     ]
   },
   plugins: [
@@ -29,24 +29,15 @@ module.exports = {
   ],
   css: ['~/assets/style/app.styl'],
   /*
-    ** Customize the progress bar color
-    */
+   ** Customize the progress bar color
+   */
   loading: {color: '#7a1ac9'},
   /*
-    ** Build configuration
-    */
+   ** Build configuration
+   */
 
   build: {
-    babel: {
-      plugins: [
-        ["transform-imports", {
-          "vuetify": {
-            "transform": "vuetify/es5/components/${member}",
-            "preventFullImport": true
-          }
-        }]
-      ]
-    },
+
     vendor: [
       '~/plugins/vuetify.js',
       'axios',
@@ -58,22 +49,22 @@ module.exports = {
     ssr: true,
     autoprefixer: false,
     /*
-         ** Run ESLint on save
-         */
+     ** Run ESLint on save
+     */
     extend (config, ctx) {
-      if (ctx.dev && ctx.isClient) {
+      if (ctx.isDev && ctx.client) {
         config.module.rules.push(
-          /* {
-                    test: /\.(js|vue)$/,
-                    loader: 'eslint-loader',
-                    exclude: /(node_modules)/
-          }, */ {
-            test: /\.(css||less)$/,
-            use: ['css-loader', 'less-loader']
-          }
+            /* {
+             test: /\.(js|vue)$/,
+             loader: 'eslint-loader',
+             exclude: /(node_modules)/
+             }, */ {
+              test: /\.(css||less)$/,
+              use: ['css-loader', 'less-loader']
+            }
         );
       }
-      if (ctx.isServer) {
+      if (ctx.server) {
         config.externals = [
           nodeExternals({
             whitelist: [/^vuetify/]

@@ -65,7 +65,7 @@ module.exports =
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 8);
+/******/ 	return __webpack_require__(__webpack_require__.s = 10);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -73,9 +73,9 @@ module.exports =
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__initMongoose__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__initMongoose__ = __webpack_require__(5);
 /* harmony export (immutable) */ exports["a"] = connectMongoose;
-var mongoose = __webpack_require__(5);
+var mongoose = __webpack_require__(7);
 
 
 function connectMongoose() {
@@ -100,9 +100,24 @@ function connectMongoose() {
 /* 1 */
 /***/ function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(__dirname) {var nodeExternals = __webpack_require__(7);
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return router; });
+var Router = __webpack_require__(6);
+var routeObj = new Router();
+
+routeObj.get('/user/login', function (ctx, next) {
+    ctx.body = { login: 'login available' };
+});
+
+var router = routeObj;
+
+/***/ },
+/* 2 */
+/***/ function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(__dirname) {var nodeExternals = __webpack_require__(9);
 var resolve = function resolve(dir) {
-  return __webpack_require__(6).join(__dirname, dir);
+  return __webpack_require__(8).join(__dirname, dir);
 };
 
 module.exports = {
@@ -156,19 +171,19 @@ module.exports = {
 /* WEBPACK VAR INJECTION */}.call(exports, ""))
 
 /***/ },
-/* 2 */
+/* 3 */
 /***/ function(module, exports) {
 
 module.exports = require("koa");
 
 /***/ },
-/* 3 */
+/* 4 */
 /***/ function(module, exports) {
 
 module.exports = require("nuxt");
 
 /***/ },
-/* 4 */
+/* 5 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -185,34 +200,42 @@ function getMongoose() {
 }
 
 /***/ },
-/* 5 */
-/***/ function(module, exports) {
-
-module.exports = require("mongoose");
-
-/***/ },
 /* 6 */
 /***/ function(module, exports) {
 
-module.exports = require("path");
+module.exports = require("koa-router");
 
 /***/ },
 /* 7 */
 /***/ function(module, exports) {
 
-module.exports = require("webpack-node-externals");
+module.exports = require("mongoose");
 
 /***/ },
 /* 8 */
+/***/ function(module, exports) {
+
+module.exports = require("path");
+
+/***/ },
+/* 9 */
+/***/ function(module, exports) {
+
+module.exports = require("webpack-node-externals");
+
+/***/ },
+/* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_koa__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_koa__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_koa___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_koa__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_nuxt__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_nuxt__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_nuxt___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_nuxt__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__nodeserver_mongoose__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__nodeserver_routeHandler__ = __webpack_require__(1);
+
 
 
 
@@ -222,7 +245,7 @@ var port = process.env.PORT || 7616;
 // process.env.DEBUG = 'nuxt:*'
 
 // Import and Set Nuxt.js options
-var config = __webpack_require__(1);
+var config = __webpack_require__(2);
 config.dev = !(app.env === 'production');
 
 // Instantiate nuxt.js
@@ -230,6 +253,7 @@ var nuxt = new __WEBPACK_IMPORTED_MODULE_1_nuxt__["Nuxt"](config);
 
 //connect mongoose
 __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__nodeserver_mongoose__["a" /* connectMongoose */])();
+app.use(__WEBPACK_IMPORTED_MODULE_3__nodeserver_routeHandler__["a" /* router */].routes()).use(__WEBPACK_IMPORTED_MODULE_3__nodeserver_routeHandler__["a" /* router */].allowedMethods());
 
 if (config.dev) {
   var builder = new __WEBPACK_IMPORTED_MODULE_1_nuxt__["Builder"](nuxt);

@@ -19,8 +19,8 @@ const nuxt = new Nuxt(config);
 //connect mongoose
 connectMongoose();
 
-app.use(router.routes());
-app.use(router.allowedMethods());
+
+
 
 if (config.dev) {
   const builder = new Builder(nuxt);
@@ -41,6 +41,9 @@ app.use(ctx => {
     });
   });
 });
+
+app.use(router.routes());
+app.use(router.allowedMethods());
 
 app.listen(port);
 console.log('Server listening on ' + host + ':' + port);

@@ -19,20 +19,6 @@ const nuxt = new Nuxt(config);
 //connect mongoose
 connectMongoose();
 
-router.use(async (ctx, next) => {
-  console.log('Middleware start');
-  await next();
-  console.log('Middleware end');
-});
-
-/*var Router = require('koa-router');
-var router = new Router();
-
-router.get('/userLogin', (ctx, next) => {
-  console.log("user login route")
-  ctx.body = {login:'login available'};
-});*/
-
 app.use(router.routes());
 app.use(router.allowedMethods());
 

@@ -1,6 +1,7 @@
 import Koa from 'koa';
 import {Nuxt, Builder} from 'nuxt';
 import {connectMongoose} from "./nodeserver/mongoose"
+import {router} from "./nodeserver/routeHandler"
 const app = new Koa();
 const host = process.env.HOST || '127.0.0.1';
 const port = process.env.PORT || 7616;
@@ -15,7 +16,9 @@ const nuxt = new Nuxt(config);
 
 //connect mongoose
 connectMongoose();
-
+app
+    .use(router.routes())
+    .use(router.allowedMethods());
 
 if (config.dev) {
   const builder = new Builder(nuxt);

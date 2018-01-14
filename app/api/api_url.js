@@ -1,6 +1,6 @@
 (function () {
   let root = '/';
   module.exports = {
-    login: root + 'admin/user/login'
+    login: root + 'user/login'
   };
 })();

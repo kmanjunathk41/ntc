@@ -1,9 +1,8 @@
 var Router = require('koa-router');
-var router = new Router();
+var routeObj = new Router();
 
-router.get('/login', (ctx, next) => {
+routeObj.get('/user/login', (ctx, next) => {
     ctx.body = {login:'login available'};
 });
 
-
-module.exports = router;
+export let router = routeObj;

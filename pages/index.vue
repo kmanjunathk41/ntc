@@ -26,7 +26,8 @@
             loginSuccess : function (data) {
                 this.$store.commit("setAppState",true);
                 this.$store.commit("setUserId",data.userId);
-                 this.$router.push("/applianceList");
+//                 this.$router.push("/");
+                alert(data)
             }
         }
     }

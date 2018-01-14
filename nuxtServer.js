@@ -28,7 +28,6 @@ if (config.dev) {
   });
 }
 
-
 app.use(ctx => {
   ctx.status = 200;
 

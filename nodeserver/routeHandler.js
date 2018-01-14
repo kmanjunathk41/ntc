@@ -3,6 +3,7 @@ var routeObj = new Router();
 
 routeObj.get('/userLogin', (ctx, next) => {
     console.log("user login route")
+    ctx.status = 200;
     ctx.body = {login:'login available'};
 });
 

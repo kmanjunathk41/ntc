@@ -14,8 +14,16 @@ config.dev = !(app.env === 'production');
 // Instantiate nuxt.js
 const nuxt = new Nuxt(config);
 
+
+
 //connect mongoose
 connectMongoose();
+
+router.use(async (ctx, next) => {
+  console.log('Middleware start');
+  await next();
+  console.log('Middleware end');
+});
 
 /*var Router = require('koa-router');
 var router = new Router();
